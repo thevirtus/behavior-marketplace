@@ -26,7 +26,8 @@
     "stripe": "^13.5.0",
     "@tensorflow/tfjs-node": "^4.10.0",
     "node-cron": "^3.0.2",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "socket.io": "^4.7.2"
   },
   "devDependencies": {
     "nodemon": "^3.0.1"

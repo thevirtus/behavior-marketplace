@@ -13,6 +13,11 @@ const predictionRoutes = require('./routes/predictions');
 const marketplaceRoutes = require('./routes/marketplace');
 const subscriptionRoutes = require('./routes/subscriptions');
 const adminRoutes = require('./routes/admin');
+const analyticsRoutes = require('./routes/analytics');
+const communityRoutes = require('./routes/community');
+const realtimeService = require('./services/realtimeService');
+const aiPredictionService = require('./services/aiPredictionService');
+const gamificationService = require('./services/gamificationService');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -56,6 +61,8 @@ app.use('/api/predictions', predictionRoutes);
 app.use('/api/marketplace', marketplaceRoutes);
 app.use('/api/subscriptions', subscriptionRoutes);
 app.use('/api/admin', adminRoutes);
+app.use('/api/analytics', analyticsRoutes);
+app.use('/api/community', communityRoutes);
 
 // Stripe webhook endpoint (must be before express.json middleware)
 app.use('/api/webhooks/stripe', express.raw({type: 'application/json'}), require('./routes/webhooks'));
@@ -105,12 +112,20 @@ async function startServer() {
       console.log('Database models synchronized.');
     }
     
+    // Initialize AI Prediction Service
+    await aiPredictionService.initialize();
+    console.log('AI Prediction Service initialized.');
+    
     // Start server
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
       console.log(`Server running on port ${PORT}`);
       console.log(`Environment: ${process.env.NODE_ENV}`);
       console.log(`Health check: http://localhost:${PORT}/health`);
     });
+    
+    // Initialize real-time service
+    realtimeService.initialize(server);
+    console.log('Real-time service initialized.');
   } catch (error) {
     console.error('Unable to start server:', error);
     process.exit(1);

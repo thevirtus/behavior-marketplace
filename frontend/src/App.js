@@ -16,6 +16,9 @@ import CompanyDashboard from './pages/CompanyDashboard';
 import AdminPanel from './pages/AdminPanel';
 import Pricing from './pages/Pricing';
 import Profile from './pages/Profile';
+import AdvancedAnalytics from './components/AdvancedAnalytics';
+import CommunityHub from './components/CommunityHub';
+import LiveDashboard from './components/LiveDashboard';
 
 function App() {
   return (
@@ -51,6 +54,21 @@ function App() {
                 <Route path="/profile" element={
                   <ProtectedRoute>
                     <Profile />
+                  </ProtectedRoute>
+                } />
+                <Route path="/analytics" element={
+                  <ProtectedRoute>
+                    <AdvancedAnalytics />
+                  </ProtectedRoute>
+                } />
+                <Route path="/community" element={
+                  <ProtectedRoute>
+                    <CommunityHub />
+                  </ProtectedRoute>
+                } />
+                <Route path="/live" element={
+                  <ProtectedRoute>
+                    <LiveDashboard />
                   </ProtectedRoute>
                 } />
 

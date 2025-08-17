@@ -104,14 +104,23 @@ const Navbar = () => {
               </>
             ) : (
               <>
-                <Link to="/pricing" className="nav-link">
-                  Pricing
+                <Link to="/live" className="nav-link">
+                  Live Dashboard
                 </Link>
-                <Link to="/login" className="nav-link">
-                  Login
+                <Link to="/behaviors" className="nav-link">
+                  Behaviors
                 </Link>
-                <Link to="/register" className="btn-primary">
-                  Get Started
+                <Link to="/predictions" className="nav-link">
+                  Predictions
+                </Link>
+                <Link to="/analytics" className="nav-link">
+                  Analytics
+                </Link>
+                <Link to="/marketplace" className="nav-link">
+                  Marketplace
+                </Link>
+                <Link to="/community" className="nav-link">
+                  Community
                 </Link>
               </>
             )}
